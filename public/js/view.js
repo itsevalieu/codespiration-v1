@@ -1,8 +1,9 @@
-// Project 2 - View.js
+ // Project 2 - View.js
 $(document).ready(function () {
 	$(document).on("click", "newProject-btn", createNewProject);
 	$(document).on("click", "editProject-btn", editProject);
 	$(document).on("click", "closeProject-btn", closeProject);
+	$(document).on("click", "completeProject-btn", completeProject);
 	$(document).on("click", "generateProject-btn", generateProject);
 	$(document).on("click", "getHelp-btn", getHelp);
 	$(document).on("click", "addTech-btn", addTech);
@@ -90,10 +91,38 @@ $(document).ready(function () {
 		$.post("/api/projects", projects, function () {
 			getProjects();
 		});
-		//resets form to null values for multiple project entry
+	//resets form to null values for multiple project entry
 		inputProjectName.val("");
 		inputProjectTeam.val("");
 		inputProjectDueDate.val("");
+	}
+	
+//On click, deletes project from database based on id
+	function closeProject(){
+		var projectToClose = $(this).data("id");
+		
+		$.ajax({
+			method: "DELETE",
+			url: "/api/projects" + projectToClose
+		}).done(function(){
+			getProjects();
+		});
+	}
+	
+	function completeProject(){
+		var projectCompleted = $(this).data("id");
+		projectCompleted.completed = true;
+		updateProject(projectCompleted);
+	}
+	
+	function updateProject(project){
+		$.ajax({
+			method: "PUT",
+			url: "/api/projects",
+			data: project
+		}).done(function(){
+			getProjects();
+		});
 	}
 
 });
