@@ -2,6 +2,8 @@
 $(document).ready(function () {
 	$(document).on("click", "newProject-btn", createNewProject);
 	$(document).on("click", "editProject-btn", editProject);
+	$(document).on("keyup", ".projectRow", completeEdit);
+	$(document).on("blur", ".projectRow", cancelEdit);
 	$(document).on("click", "closeProject-btn", closeProject);
 	$(document).on("click", "completeProject-btn", completeProject);
 	$(document).on("click", "generateProject-btn", generateProject);
@@ -43,31 +45,34 @@ $(document).ready(function () {
 
 		var projectName;
 		projectName = $("<span>");
+		projectName.addClass("projectTitle");
 		projectName.text(project.task);
-		projectName = $("</span>");
+		projectName.append($("</span>"));
 		projectRow.append(projectName);
 
 		var githubLink;
-		githubLink = $("<a href=" + project.githubLink + "><span><i>pageview</i>");
+		githubLink = $("<a href=" + project.githubLink + "><span><i class='medium material-icons'>pageview</i>");
 		githubLink.text("GitHub");
-		githubLink = $("</span");
+		githubLink += $("</span");
 		projectRow.append(githubLink);
 
 		var editProjectBtn;
-		editProjectBtn = $("<button");
+		editProjectBtn = $("<i class='medium material-icons'>mode_edit</i>");
 		editProjectBtn.addClass("editProject-btn");
 		editProjectBtn.data("id", project.id);
 		projectRow.append(editProjectBtn);
 
 		var getHelpBtn;
-		getHelpBtn = $("<i>question_answer</i>");
+		getHelpBtn = $("<i class='medium material-icons'>question_answer</i>");
 		getHelpBtn.addClass("material-icons forum getHelp-btn");
 		projectRow.append(getHelpBtn);
 
 		var closeProject;
-		closeProject = $("<i>assignment_late</i>");
+		closeProject = $("<i class='medium material-icons'>assignment_late</i>");
 		closeProject.addClass("closeProject-btn");
 		projectRow.append(closeProject);
+		
+		projectRow.append($("</li>"));
 
 		return projectRow;
 	}
@@ -77,6 +82,27 @@ $(document).ready(function () {
 		$(this).children().hide();
 		$(this).children("input.edit").val(edittedProject.text);
 		$(this).children("button").show();
+		$(this).children("input.edit").focus();
+	}
+	
+	function completeEdit(project){
+		var edittedProject;
+		if (project.key === "Enter"){
+			edittedProject = {
+				id: $(this).data("project").id,
+				projectName: $(this).children("input").val().trim()
+			};
+			$(this).blur();
+			updateProject(edittedProject);
+		}
+	}
+	
+	function cancelEdit(){
+		var projectToEdit = $(this).data("project");
+		$(this).children().hide();
+		$(this).children("input.edit").val(projectToEdit.text);
+		$(this).children("span").show();
+		$(this).children("i").show();
 	}
 
 //take user input data to create new project item in database
@@ -109,12 +135,14 @@ $(document).ready(function () {
 		});
 	}
 	
+//update project status to "Completed"
 	function completeProject(){
 		var projectCompleted = $(this).data("id");
 		projectCompleted.completed = true;
 		updateProject(projectCompleted);
 	}
 	
+//AJAX PUT request to database
 	function updateProject(project){
 		$.ajax({
 			method: "PUT",
