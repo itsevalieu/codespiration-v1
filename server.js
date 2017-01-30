@@ -32,9 +32,8 @@ app.use(express.static(process.cwd() + "/public"));
 
 //Establish Routes (*Still Need to Set up*)
 //============================================
-
-// var routes = require("./controllers");
-// app.use("/", routes);
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
 
 //Listener
 //============================================
