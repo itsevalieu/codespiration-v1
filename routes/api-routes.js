@@ -35,6 +35,10 @@ module.exports = function (app) {
 			completed: request.body.name,
 			currentProject: request.body.currentProject,
 			githubLink: request.body.currentProject
+		}, {
+			where: {
+				id: request.params.id
+			}
 		}).then(function (data) {
 			response.json(data);
 		});
@@ -60,19 +64,89 @@ module.exports = function (app) {
 
 	app.delete("/api/tech/:id", function (request, response) {
 		db.Tech.destroy({
-			where:{
+			where: {
 				id: request.params.id
 			}
-		}).then(function(data){
+		}).then(function (data) {
 			response.json(data);
 		});
 	});
 
 	app.put("/api/tech", function (request, response) {
-		db.Tech.update({}).then(function (data) {
-			reponse.json(data);
+		db.Tech.update({
+			name: request.body.name,
+			techType: request.body.techType,
+			frontend: request.body.frontend,
+			backend: request.body.backend,
+			documentation: request.body.documentation
+		}, {
+			where: {
+				id: request.params.id
+			}
+		}).then(function (data) {
+			response.json(data);
 		});
 	});
 
+	app.get("/api/users", function (request, response) {
+		db.User.findAll({}).then(function (data) {
+			response.json(data);
+		});
+	});
+
+	app.post("/api/users", function (request, response) {
+		db.User.create({
+			name: request.body.name,
+			email: request.body.email,
+			github: request.body.github,
+			password: request.body.password,
+			techKnown: request.body.techKnown
+		}).then(function (data) {
+			response.json(data);
+		});
+	});
+
+	app.put("/api/users/:id", function (request, response) {
+		db.User.update({
+			name: request.body.name,
+			email: request.body.email,
+			github: request.body.github,
+			password: request.body.password,
+			techKnown: request.body.techKnown
+		}, {
+			where: {
+				id: request.params.id
+			}
+		}).then(function (data) {
+			response.json(data);
+		});
+	});
+
+	app.delete("/api/users/:id", function (request, response) {
+		db.User.destroy({
+			where: {
+				id: request.params.id
+			}
+		}).then(function (data) {
+			response.json(data);
+		});
+	});
+	
+	app.get("/api/ideas", function (request, response){
+		app.Idea.findAll({}).then(function(data){
+			response.json(data);
+		});
+	});
+	
+	app.post("/api/ideas", function(request, response){
+		app.Idea.create({
+			name: response.body.name,
+			description: response.body.idea,
+			githubSource: response.body.githubSource,
+			timeFrame: response.body.timeFrame
+		}).then(function(data){
+			response.json(data);
+		});
+	});
 
 };
