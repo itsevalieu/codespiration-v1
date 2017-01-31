@@ -3,6 +3,7 @@ module.exports = function(sequelize, DataTypes) {
 		id: {
 			type: DataTypes.INTEGER,
 			primaryKey: true,
+			allowNull: true,
 			autoIncrement: true
 		},
 		name: {
@@ -27,32 +28,16 @@ module.exports = function(sequelize, DataTypes) {
 		documentation: {
 			type: DataTypes.STRING,
 			allowNull: true
-		},
+		}
 	},
 	{
+		timestamps: false,
+		freezeTableName: true,
 		classMethods: {
         	associate: function(models) {
-          		Tech.belongsTo(models.Idea,
-	            {
-	              	onDelete: "cascade",
-	              	foreignKey: {
-	                	allowNull: false
-	              	}
-	            });
-          		Tech.belongsTo(models.User,
-	            {
-	              	onDelete: "cascade",
-	              	foreignKey: {
-	                	allowNull: false
-	              	}
-	            });        	
-          		Tech.belongsTo(models.Project,
-	            {
-	              	onDelete: "cascade",
-	              	foreignKey: {
-	                	allowNull: false
-	              	}
-	            });        	
+          		Tech.belongsToMany(models.Idea, {through: "TechIdeas"});
+          		Tech.belongsToMany(models.User, {through: "TechUsers"});        	
+          		Tech.belongsToMany(models.Project, {through: "TechProjects"});
         	}
     	}
 	});

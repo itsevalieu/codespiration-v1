@@ -1,10 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define("User", {
-		uuid: {
-			type: DataTypes.UUID,
+		id: {
+			type: DataTypes.INTEGER,
 			primaryKey: true,
-			defaultValue: DataTypes.UUIDV4,
-			allowNull: false
+			allowNull: true,
+			autoIncrement: true
 		},
 		name: {
 			type: DataTypes.STRING,
@@ -31,19 +31,17 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
-				len: [1]
+				len: [1, 12]
 			}
-		},
-		techKnown: {
-			type: DataTypes.STRING,
-			allowNull: true
 		}
 	},
 	{
+		timestamps: false,
+		freezeTableName: true,
 		classMethods: {
         	associate: function(models) {
           		User.belongsToMany(models.Project, {through: "ProjectTeam"});
-        		User.hasMany(models.Tech);
+        		User.belongsToMany(models.Tech, {through: "TechUsers"});
         		User.hasMany(models.Idea);
         	}
     	}

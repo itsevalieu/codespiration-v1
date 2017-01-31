@@ -1,1 +1,1 @@
-INSERT INTO ideas (name, description, timeFrame) VALUES ("To Do List", "Make a to do list application that can create, retrieve, update, and delete tasks.", 4);
+INSERT INTO idea (name, description, timeFrame) VALUES ("To Do List", "Make a to do list application that can create, retrieve, update, and delete tasks.", 4);
