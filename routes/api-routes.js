@@ -131,20 +131,35 @@ module.exports = function (app) {
 			response.json(data);
 		});
 	});
-	
-	app.get("/api/ideas", function (request, response){
-		app.Idea.findAll({}).then(function(data){
+
+	app.get("/api/ideas", function (request, response) {
+		app.Idea.findAll({}).then(function (data) {
 			response.json(data);
 		});
 	});
-	
-	app.post("/api/ideas", function(request, response){
+
+	app.post("/api/ideas", function (request, response) {
 		app.Idea.create({
 			name: response.body.name,
 			description: response.body.idea,
 			githubSource: response.body.githubSource,
 			timeFrame: response.body.timeFrame
-		}).then(function(data){
+		}).then(function (data) {
+			response.json(data);
+		});
+	});
+
+	app.put("/api/ideas/:id", function (request, response) {
+		app.Idea.update({
+			name: request.body.name,
+			description: request.body.description,
+			githubSource: request.body.githubSource,
+			timeFrame: request.body.timeFrame
+		}, {
+			where: {
+				id: request.params.id
+			}
+		}).then(function (data) {
 			response.json(data);
 		});
 	});
