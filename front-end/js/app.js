@@ -7,7 +7,7 @@ $(document).ready(function(){
   });
 
 // ====================
-// Modal Tags - http://materializecss.com/chips.html
+// Chips - Modal Tags - http://materializecss.com/chips.html
 // ====================
   $('.chips').material_chip();
   $('.chips-initial').material_chip({
@@ -20,8 +20,8 @@ $(document).ready(function(){
     }],
   });
   $('.chips-placeholder').material_chip({
-    placeholder: 'Enter a tag',
-    secondaryPlaceholder: '+Tag',
+    placeholder: 'Technologies',
+    secondaryPlaceholder: 'Technologies',
   });
   $('.chips-autocomplete').material_chip({
     autocompleteData: {
@@ -41,4 +41,13 @@ $(document).ready(function(){
 
   $('.chips').on('chip.select', function(e, chip){
     // you have the selected chip here
+  });
+
+
+// ====================
+// Datepicker - Ref. Materialize Forms
+// ====================
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
   });
