@@ -30,10 +30,18 @@ app.set("view engine", "handlebars");
 //============================================
 app.use(express.static(process.cwd() + "/public"));
 
-//Establish Routes (*Still Need to Set up*)
+//Establish Routes
 //============================================
-require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
+
+var ideaRoutes = require("./controllers/idea-api-routes.js");
+var techRoutes = require("./controllers/tech-api-routes.js");
+var userRoutes = require("./controllers/user-api-routes.js");
+var projectRoutes = require("./controllers/project-api-routes.js");
+
+app.use("/", ideaRoutes);
+app.use("/tech", techRoutes);
+app.use("/user", userRoutes);
+app.use("/project", projectRoutes);
 
 //Listener
 //============================================
