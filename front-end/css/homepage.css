@@ -3,11 +3,6 @@ body {
 	font-family: 'Lato', sans-serif;
 }
 
-/* Navigation Bar */
-nav ul li:hover {
-   background-color: red;
-}
-
 /* Sticky Footer */
 body {
 	display: flex;
