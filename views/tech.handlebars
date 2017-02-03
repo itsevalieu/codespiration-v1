@@ -1,0 +1,12 @@
+<!-- Technology Handlebars Template -->
+<table class="techTable">
+{{#each techology}}
+<tr>
+	<td>{{name}}</td>
+	<td>{{techtype}}
+	<td>{{#if frontend}} {{frontend}} {{else}} {{backend}}{{/if}}</td>
+	<td>{{documentation}}</td>
+	</tr>
+{{/each}}
+</table>
+

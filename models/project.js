@@ -6,13 +6,6 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true,
 			autoIncrement: true
 		},
-		name: {
-			type: DataTypes.STRING,
-			allowNull: false,
-			validate: {
-				len: [1]
-			}
-		},
 		completed: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
@@ -20,9 +13,10 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		currentProject: {
 			type: DataTypes.BOOLEAN,
-			allowNull: true
+			allowNull: true,
+			defaultValue: true
 		},
-		githubLink: {
+		githubProjectLink: {
 			type: DataTypes.STRING,
 			allowNull: true,
 			validate: {
