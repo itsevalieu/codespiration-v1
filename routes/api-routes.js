@@ -6,7 +6,7 @@ module.exports = function (app) {
 		db.Project.findALl({}).then(function (data) {
 			response.json(data);
 		});
-	});
+	}); 
 
 	app.post("/api/projects", function (request, response) {
 		db.Project.create({
@@ -163,5 +163,4 @@ module.exports = function (app) {
 			response.json(data);
 		});
 	});
-
 };
