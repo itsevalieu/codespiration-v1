@@ -44,7 +44,7 @@ var techRoutes = require("./controllers/tech-api-routes.js");
 var userRoutes = require("./controllers/user-api-routes.js");
 var projectRoutes = require("./controllers/project-api-routes.js");
 
-app.use("/ideas", ideaRoutes);
+app.use("/idea", ideaRoutes);
 app.use("/tech", techRoutes);
 app.use("/user", userRoutes);
 app.use("/project", projectRoutes);

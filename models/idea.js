@@ -22,10 +22,7 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		githubSource: {
 			type: DataTypes.STRING,
-			allowNull: true,
-			validate: {
-				len: [1]
-			}
+			allowNull: true
 		},
 		timeFrame: {
 			type: DataTypes.INTEGER,
@@ -37,15 +34,15 @@ module.exports = function(sequelize, DataTypes) {
 		freezeTableName: false,
     	classMethods: {
     		associate: function(models) {
-        		Idea.belongsTo(models.User,
+				Idea.belongsToMany(models.Tech, {through: "TechIdea"});
+				Idea.hasOne(models.Project);
+				Idea.belongsTo(models.User,
 				{
 					onDelete: "cascade",
 					foreignKey: {
 						allowNull: true
 					}
-				});
-				Idea.belongsToMany(models.Tech, {through: "TechIdeas"});
-				Idea.hasOne(models.Project);        	
+				});     	
 			}
     	}
     });

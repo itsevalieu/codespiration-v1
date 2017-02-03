@@ -23,19 +23,26 @@ router.get("/", function(request, response) {
 //add new idea from forms page on user dashboard
 //Fix: need to include UserId and Teches, how to post to these?
 router.post("/add", function(request, response) {
-	db.Idea.create({
+	console.log(request.body);
+	var idea = db.Idea.create({
 		name: request.body.name,
 		description: request.body.description,
 		githubSource: request.body.githubSource,
-		timeFrame: request.body.timeFrame,
-		tech: {
-			id: request.body.id
-		}
-	},{
-		include: [db.Tech]
-	}).then(function(){
-		console.log("Added new idea!");
-		response.redirect("/");
+		timeFrame: request.body.timeFrame
+	}).then(function(idea){
+		console.log(idea);
+		// var techArray = [1, 2, 3]; //on click, push id of tech to this array
+		
+		// return db.Tech.findAll({
+		// 	where: {
+		// 		id: techArray
+		// 	}
+		// }).then(function(tech){
+		// 	tech.setIdeas(idea); //Make association to idea
+		
+		// 	console.log("Added new idea and associated to techs!");
+		// 	response.redirect("/");
+		// });
 	});
 });
 

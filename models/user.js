@@ -40,8 +40,8 @@ module.exports = function(sequelize, DataTypes) {
 		freezeTableName: false,
 		classMethods: {
         	associate: function(models) {
-          		User.belongsToMany(models.Project, {through: "ProjectTeam"});
-        		User.belongsToMany(models.Tech, {through: "TechUsers"});
+          		User.belongsToMany(models.Project, {through: "UserProject"});
+        		User.belongsToMany(models.Tech, {through: "TechUser"});
         		User.hasMany(models.Idea);
         	}
     	}
