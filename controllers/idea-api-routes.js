@@ -13,7 +13,7 @@ router.get("/", function(request, response) {
 		var ideaObj = {
 			idea: allIdea
 		};
-		response.json(ideaObj);
+		response.json(ideaObj); //once handlebar views made change to response.render("", ideaObj);
 		console.log("Find all ideas working!");
 	}).catch(function(error){
 		console.log(error); //display error, change to http errors
