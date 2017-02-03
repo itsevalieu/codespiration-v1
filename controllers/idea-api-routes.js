@@ -8,13 +8,7 @@ var router = express.Router();
 //Fix: limit tech gets
 router.get("/", function(request, response) {
 	db.Idea.findAll({
-		include: [db.Tech
-			// model: db.Tech,
-			// through: {
-			// 	attributes: [],
-			// 	where: {}
-			// }
-		]
+		include: [db.Tech]
 	}).then(function(allIdea) {
 		var ideaObj = {
 			idea: allIdea
