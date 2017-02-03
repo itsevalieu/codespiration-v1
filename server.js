@@ -4,6 +4,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 
+
 //Assign PORT
 //============================================
 var PORT = process.env.NODE_ENV || 3000;
@@ -32,9 +33,11 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
+
 //Static directory
 //============================================
-app.use(express.static(process.cwd() + "/front-end"));
+
+//app.use(express.static(process.cwd() + "/front-end"));
 
 //Establish Routes
 //============================================
@@ -48,6 +51,8 @@ app.use("/ideas", ideaRoutes);
 app.use("/tech", techRoutes);
 app.use("/user", userRoutes);
 app.use("/project", projectRoutes);
+
+require("./routes/html-routes.js")(app);
 
 // -------- FRANCIS' PART BELOW --------
 
@@ -97,6 +102,11 @@ app.use(morgan('dev'));
 // =======================
 
 // create user route
+app.get("/", function(request, response){
+	console.log("something.");
+	
+	response.render("/");
+});
 app.get('/create', function (request, response) {
 	response.sendFile(path.join(__dirname + "/views/create.html"));
 });
@@ -199,10 +209,11 @@ apiRoutes.use(function (request, response, next) {
 
 // route to show a random message (GET http://localhost:8080/api/)
 apiRoutes.get('/', function (request, response) {
-	
-	response.json({
+response.json({
 		message: 'Welcome to the coolest API on earth!'
 	});
+
+
 });
 
 // route to return all users (GET http://localhost:8080/api/users)
