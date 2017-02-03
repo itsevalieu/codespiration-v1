@@ -103,8 +103,6 @@ app.use(morgan('dev'));
 
 // create user route
 app.get("/", function(request, response){
-	console.log("something.");
-	
 	response.render("/");
 });
 app.get('/create', function (request, response) {

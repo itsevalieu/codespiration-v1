@@ -1,0 +1,79 @@
+  <main>
+    <div class="row">&nbsp;</div> <!-- === VERTICAL SPACER === -->
+
+    <div class="header center red-text"><span style="font-family: 'Lato', sans-serif; color: black; font-weight: 200;">CODE</span><span style="color: red; font-weight: 300;">SPIRATION</span></div>
+    <h3 class="header center red-text" style="font-family: 'Lato', sans-serif;"><span style="font-weight: 400;">Project & Idea Submissions</span></h3>
+
+    <div class="container">
+      <div class="row">
+        <!-- ========== FORM ========== -->
+        <form class="col s12">
+
+          <div class="row">
+            <div class="col s1">&nbsp;</div> <!-- === FORM - SMALL HORIZONTAL SPACER === -->
+            <div class="input-field col s6">
+              <input placeholder="Project/Idea Name" id="name" type="text" class="validate">
+              <label for="name">Name</label>
+            </div>
+
+            <div class="input-field col s4" action="#" id="projectIdeaVariable">
+                <input class="with-gap" name="group1" type="radio" id="isProject" value="project" />
+                <label for="isProject" style="margin-right: 50px; margin-left: 25px;">Project</label>
+                <input class="with-gap" name="group1" type="radio" id="isIdea" value="idea"  />
+                <label for="isIdea">Idea</label>
+            </div>
+        
+
+            <div class="col s1">&nbsp;</div> <!-- === FORM - SMALL HORIZONTAL SPACER === -->
+          </div>
+
+          <div class="row">
+            <div class="col s1">&nbsp;</div> <!-- === FORM - SMALL HORIZONTAL SPACER === -->
+              <div class="input-field col s5">
+                <input placeholder="Github Repository Link" id="github_link" type="text" class="validate">
+                <label for="github_link">Github Repository</label>
+              </div>
+              <div class="input-field col s5">
+                <div class="chips chips-placeholder" id="technologies"></div>
+              </div>
+            <div class="col s1">&nbsp;</div> <!-- === FORM - SMALL HORIZONTAL SPACER === -->
+          </div>
+
+          <div class="row">
+            <div class="col s1">&nbsp;</div> <!-- === FORM - SMALL HORIZONTAL SPACER === -->
+              <div class="input-field col s5">
+                <input id="start_date" type="date" class="datepicker">
+                <label for="start_date">Start Date</label>
+              </div>
+              <div class="input-field col s5">
+                <input id="end_date" type="date" class="datepicker">
+                <label for="end_date">End Date</label>
+              </div>
+            <div class="col s1">&nbsp;</div> <!-- === FORM - SMALL HORIZONTAL SPACER === -->
+          </div>
+
+          <div class="row">
+            <div class="col s1">&nbsp;</div> <!-- === FORM - SMALL HORIZONTAL SPACER === -->
+              <div class="input-field col s10">
+                <textarea id="description" class="materialize-textarea"></textarea>
+                <label for="description">Description</label>
+              </div>
+            <div class="col s1">&nbsp;</div> <!-- === FORM - SMALL HORIZONTAL SPACER === -->
+          </div>
+
+          <div class="row">
+            <div class="col s1">&nbsp;</div> <!-- === FORM - SMALL HORIZONTAL SPACER === -->
+              <div class="col s10">
+                <button class="waves-effect waves-light btn red">Submit</button>
+              </div>
+            <div class="col s1">&nbsp;</div> <!-- === FORM - SMALL HORIZONTAL SPACER === -->
+          </div>
+
+
+        </form>
+
+      </div>
+    </div>
+
+
+  </main>
