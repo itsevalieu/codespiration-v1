@@ -8,7 +8,13 @@ var router = express.Router();
 //Fix: limit tech gets
 router.get("/", function(request, response) {
 	db.Idea.findAll({
-		include: [db.Tech]
+		include: [db.Tech
+			// model: db.Tech,
+			// through: {
+			// 	attributes: [],
+			// 	where: {}
+			// }
+		]
 	}).then(function(allIdea) {
 		var ideaObj = {
 			idea: allIdea
@@ -27,7 +33,12 @@ router.post("/add", function(request, response) {
 		name: request.body.name,
 		description: request.body.description,
 		githubSource: request.body.githubSource,
-		timeFrame: request.body.timeFrame
+		timeFrame: request.body.timeFrame,
+		tech: {
+			id: request.body.id
+		}
+	},{
+		include: [db.Tech]
 	}).then(function(){
 		console.log("Added new idea!");
 		response.redirect("/");

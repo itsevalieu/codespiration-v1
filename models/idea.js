@@ -34,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
     },
 	{	
 		timestamps: false,
-		freezeTableName: true,
+		freezeTableName: false,
     	classMethods: {
     		associate: function(models) {
         		Idea.belongsTo(models.User,
