@@ -22,9 +22,7 @@ router.get("/", function(request, response) {
 //to be done from idea generator page
 router.post("/add", function(request, response) {
 	db.Project.create({
-		name: request.body.name,
-		description: request.body.description,
-		githubLink: request.body.githubLink
+		githubProjectLink : request.body.githubProjectLink
 	}).then(function(){
 		console.log("Added new project!");
 		response.redirect("/");
