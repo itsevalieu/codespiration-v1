@@ -3,6 +3,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
+var jwt = require('jsonwebtoken'); //
+var config = require('./config'); // 
 
 //Assign PORT
 //============================================
@@ -36,6 +38,8 @@ app.set("view engine", "handlebars");
 //============================================
 app.use(express.static(process.cwd() + "/front-end"));
 
+app.set('superSecret', config.secret);
+
 //Establish Routes
 //============================================
 
@@ -43,14 +47,70 @@ var ideaRoutes = require("./controllers/idea-api-routes.js");
 var techRoutes = require("./controllers/tech-api-routes.js");
 var userRoutes = require("./controllers/user-api-routes.js");
 var projectRoutes = require("./controllers/project-api-routes.js");
-var apiRoutes = require("./controllers/auth-api-routes.js")
+var authRoutes = express.Router(); 
 
 app.use("/ideas", ideaRoutes);
 app.use("/tech", techRoutes);
 app.use("/user", userRoutes);
 app.use("/project", projectRoutes);
-app.use("/api", apiRoutes);
+app.use("/auth", authRoutes);
 
+authRoutes.post('/authenticate', function(request, response) {
+    console.log(request.body.name)
+    console.log(request.body.password)
+    
+    db.User.findOne({
+        where: {
+            name: request.body.name,
+            password: request.body.password
+        }
+    }).then(function(dbUser) {
+        console.log(dbUser.dataValues);
+        console.log("Success!");
+
+        var token = jwt.sign(dbUser.dataValues, app.get('superSecret'), {
+            expiresIn: 60 * 60 
+        });
+      
+        response.redirect('/auth/welcome?token=' + token);
+    });
+});
+        
+authRoutes.use(function(request, response, next) {
+    var token = request.body.token || request.query.token || request.headers['x-access-token'];
+
+    if(token) {
+        console.log("Token: " + token);
+        jwt.verify(token, app.get('superSecret'), function(error, decoded) {      
+            if (error) {
+                return response.json({ success: false, message: 'Failed to authenticate token.' });    
+            } 
+
+            else {
+                request.decoded = decoded; 
+                request.token = token;   
+                next();
+            }
+        });
+    } 
+
+    else {
+        return response.status(403).send({ 
+            success: false, 
+            message: 'No token provided.' 
+        });
+    }
+});
+
+authRoutes.get('/welcome', function(request, response) {
+    response.json({ message: 'Welcome!' });
+});
+
+authRoutes.get('/users', function(request, response) {
+    db.User.findAll({}).then(function(dbUser) {
+        response.json(dbUser);
+    });
+});     
 
 //Listener
 //============================================
