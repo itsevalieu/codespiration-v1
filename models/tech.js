@@ -8,10 +8,10 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		name: {
 			type: DataTypes.STRING,
-			allowNull: false,
-			validate: {
+			allowNull: false
+			/*validate: {
 				len: [1]
-			}
+			}*/
 		},
 		techType: {
 			type: DataTypes.ENUM,
