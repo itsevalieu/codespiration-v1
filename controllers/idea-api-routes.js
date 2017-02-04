@@ -30,20 +30,20 @@ router.post("/add", function(request, response) {
 		githubSource: request.body.githubSource,
 		timeFrame: request.body.timeFrame
 	}).then(function(idea){
-		console.log(idea);
-		var techArray = [1, 2, 3]; //on click, push id of tech to this array (hard code test)
-		
-		return db.Tech.findAll({
-			where: {
-				id: techArray
-			}
-		}).then(function(tech){
-			tech.addIdeas(idea); //Make association to idea
-			console.log("Added new idea and associated to techs!");
-			response.redirect("/");
-		}).catch(function(error){
-			console.log(error);
-		});
+		// console.log(idea);
+		// var techArray = [1, 2, 3]; //on click, push id of tech to this array (hard code test)
+		// var tech = db.Tech.findAll({
+		// 	where: {
+		// 		id: techArray
+		// 	}
+		// }).then(function(tech){
+			console.log("Added new idea!");
+		// 	tech.addIdeas(idea); //Make association to idea
+			
+		 	response.redirect("/");
+		// }).catch(function(error){
+		// 	console.log(error);
+		// });
 	}).catch(function(error){
 		console.log(error);
 	});
