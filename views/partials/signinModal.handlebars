@@ -1,0 +1,26 @@
+ <div id="signInModal" class="modal">
+    <div class="modal-content">
+
+      <h4>Sign-In</h4>
+    
+        <form class="col s12" action="/api/authenticate" method="POST">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="username" type="text" class="validate">
+              <label for="username">User Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="password" type="text" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+        </form>
+
+
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn red">Submit</a>
+        <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#signUpModal">No Account? Click Here to Sign-up!</a>
+      </div>
+
+    </div>
+  </div>

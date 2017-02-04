@@ -9,16 +9,16 @@ module.exports = function(sequelize, DataTypes) {
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			validate: {
+			/*validate: {
 				len: [1, 40]
-			}
+			}*/
 		},
 		description: {
 			type: DataTypes.TEXT,
 			allowNull: false,
-			validate: {
+			/*validate: {
 				len: [1, 240]
-			}
+			}*/
 		},
 		githubSource: {
 			type: DataTypes.STRING,
@@ -26,7 +26,8 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		timeFrame: {
 			type: DataTypes.INTEGER,
-			allowNull: false
+			allowNull: false,
+			defaultValue: Math.floor((Math.random()*10)+1)
 		}
     },
 	{	

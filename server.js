@@ -55,7 +55,10 @@ app.use("/user", userRoutes);
 app.use("/project", projectRoutes);
 app.use("/auth", authRoutes);
 
-authRoutes.post('/authenticate', function(request, response) { 
+authRoutes.post('/authenticate', function(request, response) {
+    console.log(request.body.name)
+    console.log(request.body.password)
+    
     db.User.findOne({
         where: {
             name: request.body.name,

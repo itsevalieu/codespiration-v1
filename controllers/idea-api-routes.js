@@ -8,7 +8,7 @@ var router = express.Router();
 //Fix: limit tech gets
 router.get("/", function(request, response) {
 	db.Idea.findAll({
-		include: [db.Tech]
+		include: [db.Tech, db.User, db.Project]
 	}).then(function(allIdea) {
 		var ideaObj = {
 			idea: allIdea
@@ -30,21 +30,25 @@ router.post("/add", function(request, response) {
 		githubSource: request.body.githubSource,
 		timeFrame: request.body.timeFrame
 	}).then(function(idea){
-		console.log(idea);
-		// var techArray = [1, 2, 3]; //on click, push id of tech to this array
-		
-		// return db.Tech.findAll({
+		// console.log(idea);
+		// var techArray = [1, 2, 3]; //on click, push id of tech to this array (hard code test)
+		// var tech = db.Tech.findAll({
 		// 	where: {
 		// 		id: techArray
 		// 	}
 		// }).then(function(tech){
-		// 	tech.setIdeas(idea); //Make association to idea
-		
-		// 	console.log("Added new idea and associated to techs!");
-		// 	response.redirect("/");
+			console.log("Added new idea!");
+		// 	tech.addIdeas(idea); //Make association to idea
+			
+		 	response.redirect("/");
+		// }).catch(function(error){
+		// 	console.log(error);
 		// });
+	}).catch(function(error){
+		console.log(error);
 	});
 });
+
 
 //update idea (only for users who have submitted an idea)
 //should be able to update from user dashboard

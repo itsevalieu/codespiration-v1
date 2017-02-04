@@ -8,31 +8,31 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		name: {
 			type: DataTypes.STRING,
-			allowNull: false,
-			validate: {
+			allowNull: false
+			/*validate: {
 				len: [1]
-			}
+			}*/
 		},
 		email: {
 			type: DataTypes.STRING,
-			allowNull: false,
-			validate: {
+			allowNull: false
+			/*validate: {
 				len: [1]
-			}
+			}*/
 		},
 		github: {
 			type: DataTypes.STRING,
-			allowNull: false,
-			validate: {
+			allowNull: false
+			/*validate: {
 				len: [1]
-			}
+			}*/
 		},
 		password: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			validate: {
+			/*validate: {
 				len: [1, 12]
-			}
+			}*/
 		}
 	},
 	{

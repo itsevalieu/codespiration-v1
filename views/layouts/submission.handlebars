@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>User Submission - CODESPIRATION</title>
+{{> styles}}
+</head>
+
+<body>
+{{> navMenu }}
+{{> userSubmit }}
+{{{body}}}
+{{> footer }}
+{{> scripts }}
+</body>
+<script>
+	
+	$(document).on("click", "#submitButton", gatherFormData);
+				   
+	function gatherFormData(){
+		var sampleData = {
+			name: $("#isIdea").text().trim(),
+			description: $("#description").text().trim(),
+			githubSource: $("#github-link").text().trim(),
+			timeFrame: Math.floor((Math.random()*10)+1)
+		};
+		
+		var techString = "";
+		var techInput = $("#technologies").material_chip("data");
+		
+		for (var i= 0; i < techInput.length; i++){
+			techString += techInput[i].tag + " ";
+		}
+		techString = techString.trim();
+		
+		var techInput = {
+			name: techString
+		}
+		
+		$.ajax({
+			"method": "POST",
+			"url": "/tech/add",
+			"data": techInput
+		}).done(function(){
+			console.log("Added tech.");
+		});
+		
+		
+$.ajax({
+	"method": "POST",
+	"url": "/ideas/add",
+	"data": sampleData,
+}).done(function(){
+});
+		window.location.href="/dashboard";
+	};
+	</script>
+</html>

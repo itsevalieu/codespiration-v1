@@ -8,7 +8,7 @@ var router = express.Router();
 //Fix: perhaps need to limit what is shown from ideas and users
 router.get("/", function(request, response) {
 	db.Tech.findAll({
-		include: [db.Idea, db.User]
+		include: [db.Idea, db.User, db.Project]
 	}).then(function(allTech) {
 		var techObj = {
 			tech: allTech
