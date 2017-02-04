@@ -17,4 +17,8 @@ module.exports = function(app){
 	app.get("/submissions", function(request, response){
 		response.render("project", {layout: "submission.handlebars"});
 	});
+	
+	app.get("/forum", function(request, response){
+		response.render("idea", {layout: "forum.handlebars"});
+	});
 };
