@@ -23,8 +23,8 @@ router.get("/", function(request, response) {
 router.post("/add", function(request, response) {
   db.User.create({
     name: request.body.name,
-    email: request.body.email,
-    github: request.body.github,
+    email: "temp",
+    github: "temp",
     password: request.body.password
   }).then(function(){
     console.log("Added new user!");

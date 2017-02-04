@@ -64,7 +64,7 @@
 
       <h4>Sign-Up</h4>
     
-        <form class="col s12">
+        <form class="col s12" action="/user/add" method="POST">
 
           <div class="row">
             <div class="input-field col s6">
@@ -79,17 +79,17 @@
 
           <div class="row">
             <div class="input-field col s6">
-              <input id="username" type="text" class="validate">
+              <input id="username" type="text" class="validate" name="name">
               <label for="username">User Name</label>
             </div>
             <div class="input-field col s6">
-              <input id="password" type="text" class="validate">
+              <input id="password" type="password" class="validate" name="password">
               <label for="password">Password</label>
             </div>
           </div>
           
           <div class="chips chips-initial"></div>
-
+          <button type="submit">Submit</button>
         </form>
 
 
@@ -106,19 +106,19 @@
 
       <h4>Sign-In</h4>
     
-        <form class="col s12" action="/api/authenticate" method="POST">
+        <form class="col s12" action="/auth/authenticate" method="POST">
           <div class="row">
             <div class="input-field col s6">
-              <input id="username" type="text" class="validate">
+              <input id="username" type="text" class="validate" name="name">
               <label for="username">User Name</label>
             </div>
             <div class="input-field col s6">
-              <input id="password" type="text" class="validate">
+              <input id="password" type="password" class="validate" name="password">
               <label for="password">Password</label>
             </div>
           </div>
+          <button type="submit">Submit</button>
         </form>
-
 
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn red">Submit</a>
