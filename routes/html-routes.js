@@ -11,7 +11,7 @@ module.exports = function(app){
 	});
 	
 	app.get("/generator", function(request, response){
-		response.render("idea",{layout: "generator.handlebars"});
+		response.render("tech",{layout: "generator.handlebars"});
 	});
 	
 	app.get("/submissions", function(request, response){
