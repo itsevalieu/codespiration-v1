@@ -55,6 +55,8 @@ app.use("/user", userRoutes);
 app.use("/project", projectRoutes);
 app.use("/auth", authRoutes);
 
+require("./routes/html-routes.js")(app);
+
 authRoutes.post('/authenticate', function(request, response) {
     console.log(request.body.name)
     console.log(request.body.password)
