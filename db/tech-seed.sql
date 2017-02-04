@@ -17,7 +17,7 @@ INSERT INTO tech (name, techType, frontend, backend, documentation)
 VALUES ("MySQL", "database", false, true, "https://dev.mysql.com/doc/");
 
 INSERT INTO tech (name, techType, frontend, backend, documentation)
-VALUES ("JQuery", "library", true, true, "http://api.jquery.com/");
+VALUES ("jQuery", "library", true, true, "http://api.jquery.com/");
 
 INSERT INTO tech (name, techType, frontend, backend, documentation)
 VALUES ("Express", "framework", false, true, "http://expressjs.com/");

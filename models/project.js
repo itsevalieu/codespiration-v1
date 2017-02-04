@@ -6,13 +6,6 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true,
 			autoIncrement: true
 		},
-		name: {
-			type: DataTypes.STRING,
-			allowNull: false,
-			validate: {
-				len: [1]
-			}
-		},
 		completed: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
@@ -20,23 +13,21 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		currentProject: {
 			type: DataTypes.BOOLEAN,
-			allowNull: true
-		},
-		githubLink: {
-			type: DataTypes.STRING,
 			allowNull: true,
-			validate: {
-				len: [1]
-			}
+			defaultValue: true
+		},
+		githubProjectLink: {
+			type: DataTypes.STRING,
+			allowNull: true
 		}
 	},
 	{
 		timestamps: false,
-		freezeTableName: true,
+		freezeTableName: false,
     	classMethods: {
     		associate: function(models) {
-        		Project.belongsToMany(models.User, {through: "ProjectTeam"});
-        		Project.belongsToMany(models.Tech, {through: "TechProjects"});
+        		Project.belongsToMany(models.User, {through: "UserProject"});
+        		Project.belongsToMany(models.Tech, {through: "TechProject"});
         		Project.belongsTo(models.Idea,
 	            {
 	              	onDelete: "cascade",

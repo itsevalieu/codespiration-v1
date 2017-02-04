@@ -28,7 +28,7 @@ router.post("/add", function(request, response) {
 		documentation: request.body.documentation
 	}).then(function(){
 		console.log("Added new tech!");
-		response.redirect("/");
+		response.redirect("/tech");
 	});
 });
 

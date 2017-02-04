@@ -13,7 +13,7 @@ router.get("/", function(request, response) {
 		var ideaObj = {
 			idea: allIdea
 		};
-		response.json(ideaObj);
+		response.json(ideaObj); //once handlebar views made change to response.render("", ideaObj);
 		console.log("Find all ideas working!");
 	}).catch(function(error){
 		console.log(error); //display error, change to http errors
@@ -23,14 +23,26 @@ router.get("/", function(request, response) {
 //add new idea from forms page on user dashboard
 //Fix: need to include UserId and Teches, how to post to these?
 router.post("/add", function(request, response) {
-	db.Idea.create({
+	console.log(request.body);
+	var idea = db.Idea.create({
 		name: request.body.name,
 		description: request.body.description,
 		githubSource: request.body.githubSource,
 		timeFrame: request.body.timeFrame
-	}).then(function(){
-		console.log("Added new idea!");
-		response.redirect("/");
+	}).then(function(idea){
+		console.log(idea);
+		// var techArray = [1, 2, 3]; //on click, push id of tech to this array
+		
+		// return db.Tech.findAll({
+		// 	where: {
+		// 		id: techArray
+		// 	}
+		// }).then(function(tech){
+		// 	tech.setIdeas(idea); //Make association to idea
+		
+		// 	console.log("Added new idea and associated to techs!");
+		// 	response.redirect("/");
+		// });
 	});
 });
 
