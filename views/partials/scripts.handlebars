@@ -1,0 +1,35 @@
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script>
+	 $(document).ready(function(){
+	 $(document).on("click", "#signup-btn", signUp);
+		 $(document).on("click", "#signin-btn", signIn);
+	 
+	 function signUp(){
+	 var newUser = {
+		"name": $("#name").val().trim(),
+		 "email":$("#email").val().trim(),
+		 "userName": $("#username").val().trim(),
+		 "password":$("#password").val().trim()
+	 };
+		 
+		 console.log(newUser);
+	 
+	 
+	 $.ajax({
+		 "method": "POST",
+		 "url": "/user/add",
+		 "data": newUser
+	 }).done(function(){
+		 window.location.href = "/dashboard";
+	 });
+	 };
+		 });
+	  
+	  function signIn(){
+		  window.location.href="/dashboard";
+	  }
+	</script>
+  <script src="js/app.js"></script>
