@@ -55,19 +55,13 @@ app.use("/user", userRoutes);
 app.use("/project", projectRoutes);
 app.use("/auth", authRoutes);
 
-authRoutes.post('/authenticate', function(request, response) {
-    console.log(request.body.name)
-    console.log(request.body.password)
-    
+authRoutes.post('/authenticate', function(request, response) { 
     db.User.findOne({
         where: {
             name: request.body.name,
             password: request.body.password
         }
     }).then(function(dbUser) {
-        console.log(dbUser.dataValues);
-        console.log("Success!");
-
         var token = jwt.sign(dbUser.dataValues, app.get('superSecret'), {
             expiresIn: 60 * 60 
         });
@@ -80,7 +74,6 @@ authRoutes.use(function(request, response, next) {
     var token = request.body.token || request.query.token || request.headers['x-access-token'];
 
     if(token) {
-        console.log("Token: " + token);
         jwt.verify(token, app.get('superSecret'), function(error, decoded) {      
             if (error) {
                 return response.json({ success: false, message: 'Failed to authenticate token.' });    
@@ -103,7 +96,7 @@ authRoutes.use(function(request, response, next) {
 });
 
 authRoutes.get('/welcome', function(request, response) {
-    response.json({ message: 'Welcome!' });
+    response.json({ message: 'Welcome!!!' });
 });
 
 authRoutes.get('/users', function(request, response) {
