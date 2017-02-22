@@ -1,5 +1,5 @@
-# Codespiration
-PRODUCT OVERVIEWFOBE –PROJECT TWO -PRESENTATIONTHE CONCEPTAre you sweating with desperation because you need inspiration for your next coding project? Try our idea generator app called CODESPIRATION!
+# Codespiration by FOBE 
+THE CONCEPT: Are you sweating with desperation because you need inspiration for your next coding project? Try our idea generator app called CODESPIRATION!
 
 CODESPIRATION is the brain-child of a group of students within the UCLAxCoding Bootcamp. It was founded under the premise that, many times —developers want to practice their skills or learn new technologies, but hit a “writer's block” of sorts, when it comes to brainstorming a concept to build.
 
