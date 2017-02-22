@@ -8,8 +8,8 @@ CODESPIRATION is the brain-child of a group of students within the UCLAxCoding B
 2. Tech Generator
 3. Idea Submissions
 4. User Dashboard:
-  * Your Projects
-  * Your Technologies
+ * Your Projects
+ * Your Technologies
   
 
 ## Features in Development:
