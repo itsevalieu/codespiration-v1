@@ -17,3 +17,6 @@ CODESPIRATION is the brain-child of a group of students within the UCLAxCoding B
 2. Direct Messaging
 3. Forum
 4. Leaderboard
+
+## Technologies:
+* HTML, CSS, JS, MySQL, Sequelize, Handlebars, Materialize
